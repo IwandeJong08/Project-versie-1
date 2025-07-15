@@ -12,7 +12,7 @@ CANVAS.height = innerHeight;
 
 
 
-let offset = {x: 0, y: 0};
+let offset = {y: 0, x: 0};
 let baseCellSize = 50; // size of each grid cell with scale = 1.
 let scale = 1;
 function drawGrid() {
