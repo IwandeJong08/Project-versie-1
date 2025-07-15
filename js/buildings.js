@@ -9,9 +9,11 @@ class Crafter {
 }
 
 class Furnace {
-    constructor(x, y){
-        this.x = x;
-        this.y = y;
+    constructor(texture){
+        this.x = null;
+        this.y = null;
+
+        this.texture = texture
     }
 }
 

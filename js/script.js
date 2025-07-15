@@ -226,6 +226,11 @@ selectBuilding((buildingType) => {
             placingBuilding = new Crafter(3, sprites.crafter);
             HIGHLIGHT.size = placingBuilding.size;
             break;
+
+        case 'furnace':
+            placeBuilding = new Furnace(sprites.furnace);
+            HIGHLIGHT.size = placingBuilding.size;
+            break;
     }
 });
 
