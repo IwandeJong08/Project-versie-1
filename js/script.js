@@ -1,13 +1,7 @@
-import './buildings.js';
-import './sources.js';
-import './transportation.js';
-
-
 const CANVAS = document.getElementById('myCanvas');
 const ctx = CANVAS.getContext('2d');
 CANVAS.width = innerWidth;
 CANVAS.height = innerHeight;
-
 
 class Cell {
     constructor(x, y, size, building) {
@@ -63,17 +57,41 @@ class Grid {
         });
 
 
+        // Draw highlight
+        if (HIGHLIGHT.x !== null && HIGHLIGHT.y !== null) {
+            ctx.save();
+            ctx.fillStyle = HIGHLIGHT.color;
+            ctx.globalAlpha = 0.5; // Semi-transparent highlight
+            ctx.fillRect(
+                HIGHLIGHT.x * this.baseCellSize * this.scale + this.offset.x,
+                HIGHLIGHT.y * this.baseCellSize * this.scale + this.offset.y,
+                this.baseCellSize * this.scale * HIGHLIGHT.size,
+                this.baseCellSize * this.scale * HIGHLIGHT.size
+            );
+            ctx.restore();
+        }
+
 
         ctx.restore();
     }
 
     update = () => {
+
         this.draw();
     }
 }
 
-let mouse = {x: 0, y: 0};
-let mouseStart = {x: 0, y: 0};
+const GRID = new Grid();
+const HIGHLIGHT = {
+    x: null,
+    y: null,
+    size: 1,
+    color: 'rgba(255, 0, 0, 0.3)' // Highlight color
+};
+
+
+const mouse = {x: 0, y: 0};
+const mouseStart = {x: 0, y: 0};
 let isPanning = false;
 window.addEventListener("contextmenu", e => e.preventDefault());
 window.addEventListener('mousedown', (e) => {
@@ -92,6 +110,14 @@ window.addEventListener('mousemove', (e) => {
         GRID.offset.y -= mouseStart.y - mouse.y;
         mouseStart.x = mouse.x;
         mouseStart.y = mouse.y;
+
+        HIGHLIGHT.x = null;
+        HIGHLIGHT.y = null; // Don't highglight while panning
+    } else {
+        // Handle hover effects or other interactions here
+        // determine which cell is hovered based on mouse position
+        HIGHLIGHT.x = Math.floor((mouse.x - GRID.offset.x) / (GRID.baseCellSize * GRID.scale));
+        HIGHLIGHT.y = Math.floor((mouse.y - GRID.offset.y) / (GRID.baseCellSize * GRID.scale));
     }
 });
 
@@ -99,14 +125,17 @@ window.addEventListener('mouseup', (e) => {
     isPanning = false;
 });
 
+CANVAS.addEventListener('mouseleave', () => {
+    isPanning = false;
+    HIGHLIGHT.x = null;
+    HIGHLIGHT.y = null; // Reset highlight when mouse leaves canvas
+});
+
 window.addEventListener('resize', () => {
-    console.log('Resizing canvas');
     CANVAS.width = innerWidth;
     CANVAS.height = innerHeight;
 });
 
-
-const GRID = new Grid();
 function init(){;}
 
 function animate(){

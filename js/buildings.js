@@ -34,3 +34,5 @@ class Miner {
         this.y = y;
     }
 }
+
+export {Crafter, Furnace, Chest, EnderChest, Miner};
