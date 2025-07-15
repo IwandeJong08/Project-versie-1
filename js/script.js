@@ -9,8 +9,13 @@ CANVAS.height = innerHeight;
 
 
 let objecjts = [];
+
+
+
+
+
 function init(){
-    
+
 }
 
 function animate(){
