@@ -29,7 +29,7 @@
 
         {
             "name": "chest",
-            "ingredienst": {
+            "ingredients": {
                 "A": "oak_planks"
             },
             "pattern" : "A, A, A, A, #, A, A, A, A",
