@@ -1,0 +1,44 @@
+{
+    "recipes": [
+        {
+            "name": "oak_planks",
+            "ingredients": {
+                "A": "oak_log"
+                
+            },
+            "pattern" : "A",
+            "result": {
+                "item": "oak_planks",
+                "amount": 4
+            },
+            "shapeless" : true
+        },
+
+        {
+            "name": "oak_slab",
+            "ingredients": {
+                "A": "oak_planks"
+            },
+            "pattern" : "A, A, A",
+            "result": {
+                "item": "oak_slab",
+                "amount": 3
+            },
+            "shapeless" : false
+        },
+
+        {
+            "name": "chest",
+            "ingredienst": {
+                "A": "oak_planks"
+            },
+            "pattern" : "A, A, A, A, #, A, A, A, A",
+            "result": {
+                "item": "chest",
+                "amount": 1
+            },
+            "shapeless" : false
+        }
+
+    ]
+}
