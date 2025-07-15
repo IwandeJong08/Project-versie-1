@@ -1,8 +1,10 @@
 class Crafter {
-    constructor(size, x, y){
+    constructor(size, texture){
         this.size = size;
-        this.x = x;
-        this.y = y;
+        this.x = null;
+        this.y = null;
+
+        this.texture = texture;
     }
 }
 
@@ -35,4 +37,4 @@ class Miner {
     }
 }
 
-export {Crafter, Furnace, Chest, EnderChest, Miner};
+export { Crafter, Furnace, Chest, EnderChest, Miner };
