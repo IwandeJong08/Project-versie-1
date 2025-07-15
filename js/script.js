@@ -75,8 +75,8 @@ class Grid {
 let mouse = {x: 0, y: 0};
 let mouseStart = {x: 0, y: 0};
 let isPanning = false;
-CANVAS.addEventListener("contextmenu", e => e.preventDefault());
-CANVAS.addEventListener('mousedown', (e) => {
+window.addEventListener("contextmenu", e => e.preventDefault());
+window.addEventListener('mousedown', (e) => {
     if (e.button !== 2) return; // Only allow right-click for panning
     e.preventDefault();
     isPanning = true;
@@ -84,7 +84,7 @@ CANVAS.addEventListener('mousedown', (e) => {
     mouseStart.y = e.clientY;
 });
 
-CANVAS.addEventListener('mousemove', (e) => {
+window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
     if (isPanning) {
@@ -95,7 +95,7 @@ CANVAS.addEventListener('mousemove', (e) => {
     }
 });
 
-CANVAS.addEventListener('mouseup', (e) => {
+window.addEventListener('mouseup', (e) => {
     isPanning = false;
 });
 
