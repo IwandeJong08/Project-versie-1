@@ -20,12 +20,12 @@ class Cell {
 
 class Grid {
     constructor() {
-        this.offset = {x: 0, y: 0};
+        this.offset = {x: CANVAS.width/2, y: CANVAS.height/2};
         this.baseCellSize = 50; // size of each grid cell with scale = 1.
         this.scale = 1;
 
         this.sources = this.generateSources();
-        this.buildings = [];
+        this.buildings = [{x: 0, y: 0, size: 3},];
     }
 
     generateSources() {return []};
@@ -37,9 +37,9 @@ class Grid {
         ctx.strokeStyle = '#ccc';
         ctx.beginPath();
 
-        const step = baseCellSize * scale;
-        const startX = -((offset.x % step) + step) % step;
-        const startY = -((offset.y % step) + step) % step;
+        const step = this.baseCellSize * this.scale;
+        const startX = ((this.offset.x % step) + step) % step;
+        const startY = ((this.offset.y % step) + step) % step;
 
         for (let x = startX; x < CANVAS.width; x += step) {
             ctx.moveTo(x, 0);
@@ -51,11 +51,24 @@ class Grid {
         }
         ctx.stroke();
 
+
+        // Draw buildings
+        this.buildings.forEach(building => {
+            ctx.save();
+            ctx.translate(building.x * this.baseCellSize * this.scale + this.offset.x, 
+                          building.y * this.baseCellSize * this.scale + this.offset.y);
+            ctx.fillStyle = building.color || '#9900c488'; // Default color if not specified
+            ctx.fillRect(0, 0, this.baseCellSize * this.scale * building.size, this.baseCellSize * this.scale * building.size);
+            ctx.restore();
+        });
+
+
+
         ctx.restore();
     }
 
     update = () => {
-
+        this.draw();
     }
 }
 
@@ -75,8 +88,10 @@ CANVAS.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
     if (isPanning) {
-        offset.x = mouseStart.x - mouse.x;
-        offset.y = mouseStart.y - mouse.y;
+        GRID.offset.x -= mouseStart.x - mouse.x;
+        GRID.offset.y -= mouseStart.y - mouse.y;
+        mouseStart.x = mouse.x;
+        mouseStart.y = mouse.y;
     }
 });
 
@@ -84,7 +99,8 @@ CANVAS.addEventListener('mouseup', (e) => {
     isPanning = false;
 });
 
-CANVAS.addEventListener('resize', () => {
+window.addEventListener('resize', () => {
+    console.log('Resizing canvas');
     CANVAS.width = innerWidth;
     CANVAS.height = innerHeight;
 });
