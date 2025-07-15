@@ -16,6 +16,20 @@ building.red.addEventListener("click", () => {
     if (onBuildingSelect) onBuildingSelect("furnace");
 });
 
+building.green.addEventListener("click", () => {
+    if (onBuildingSelect) onBuildingSelect("chest");
+});
+
+building.purple.addEventListener("click", () => {
+    if (onBuildingSelect) onBuildingSelect("double_chest");
+});
+
+building.yellow.addEventListener("click", () => {
+    if (onBuildingSelect) onBuildingSelect("enderchest");
+});
+
+
+
 
 
 

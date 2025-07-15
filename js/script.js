@@ -7,7 +7,7 @@
 
 // IMPORTS
 import { selectBuilding } from './ui.js'
-import { Crafter, Furnace, Chest, EnderChest, Miner } from './buildings.js';
+import { Crafter, Furnace, Chest, DoubleChest, EnderChest, Miner } from './buildings.js';
 import { loadImages } from './sprites.js';
 
 // CANVAS SETUP
@@ -223,14 +223,29 @@ let placingBuilding = null;
 selectBuilding((buildingType) => {
     switch (buildingType) {
         case 'crafter':
-            placingBuilding = new Crafter(3, sprites.crafter);
+            placingBuilding = new Crafter(2, sprites.crafter);
             HIGHLIGHT.size = placingBuilding.size;
             break;
 
         case 'furnace':
-            placeBuilding = new Furnace(sprites.furnace);
+            placingBuilding = new Furnace(sprites.furnace);
             HIGHLIGHT.size = placingBuilding.size;
             break;
+
+        case 'chest':
+            placingBuilding = new Chest(sprites.chest);
+            HIGHLIGHT.size = placingBuilding.size;
+            break;
+
+        case 'double_chest':
+            placingBuilding = new DoubleChest(sprites.chest);
+            HIGHLIGHT.size = placingBuilding.size;
+            break;
+        
+        case 'enderchest':
+            placingBuilding = new EnderChest(sprites.enderChest);
+            HIGHLIGHT.size = placingBuilding.size;
+            break; 
     }
 });
 
