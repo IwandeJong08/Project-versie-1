@@ -5,3 +5,11 @@ class Belt {
         this.rotation = rotation; // Rotation of the belt in degrees
     }
 }
+
+class Minecart {
+    constructor(x, y, type) {
+        this.x = x; // X coordinate of the minecart
+        this.y = y; // Y coordinate of the minecart
+        this.type = type; // Type of the minecart (e.g., 'normal', 'hopper', 'chest')
+    }
+}
