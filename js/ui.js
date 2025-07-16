@@ -6,6 +6,7 @@ const building = {
     green: document.querySelector("#building-green"),   
     purple: document.querySelector("#building-purple"),
     yellow: document.querySelector("#building-yellow"),
+    cyan: document.querySelector("#building-cyan"),
 }
 
 building.blue.addEventListener("click", () => {
@@ -28,7 +29,9 @@ building.yellow.addEventListener("click", () => {
     if (onBuildingSelect) onBuildingSelect("enderchest");
 });
 
-
+building.cyan.addEventListener("click", () => {
+    if (onBuildingSelect) onBuildingSelect("rail");
+});
 
 
 

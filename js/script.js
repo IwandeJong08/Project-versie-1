@@ -9,6 +9,7 @@
 import { selectBuilding } from './ui.js'
 import { Crafter, Furnace, Chest, DoubleChest, EnderChest, Miner } from './buildings.js';
 import { loadImages } from './sprites.js';
+import { Belt, Minecart, Rail } from './transportation.js';
 
 // CANVAS SETUP
 const CANVAS = document.getElementById('myCanvas');
@@ -132,7 +133,9 @@ class Grid {
 
     update = () => {
         this.draw();
-        Crafter.updateAll();    
+        this.buildings.forEach(building => {
+            if (building.update) building.update();
+        });  
     }
 }
 
@@ -247,6 +250,11 @@ selectBuilding((buildingType) => {
             placingBuilding = new EnderChest(sprites.enderChest);
             HIGHLIGHT.size = placingBuilding.size;
             break; 
+
+        case 'rail':
+            placingBuilding = new Rail(sprites.rail);
+            HIGHLIGHT.size = placingBuilding.size;
+            break;
     }
 });
 

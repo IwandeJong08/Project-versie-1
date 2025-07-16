@@ -13,3 +13,13 @@ class Minecart {
         this.type = type; // Type of the minecart (e.g., 'normal', 'hopper', 'chest')
     }
 }
+
+class Rail {
+    constructor() {
+        this.x = null; // X coordinate of the rail
+        this.y = null; // Y coordinate of the rail
+        this.rotation = null; // Direction of the rail (e.g., 'straight', 'curve', 'turn')
+    }
+}
+
+export { Belt, Minecart, Rail };
