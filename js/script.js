@@ -132,6 +132,7 @@ class Grid {
 
     update = () => {
         this.draw();
+        Crafter.updateAll();    
     }
 }
 

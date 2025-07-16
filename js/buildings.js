@@ -5,6 +5,7 @@ class Crafter {
         this.y = null;
         this.texture = texture;
         this.items = [];
+        this.result = [];
         this.recipe = null;
     }
 
@@ -14,9 +15,33 @@ class Crafter {
 
     setRecipe(recipe) {
         this.recipe = recipe;
-    }   
+    } 
+    
 
- 
+    crafting() {
+        
+        let craftable = false;
+        this.recipe.ingriedients.forEach(part => {
+            if(this.items.includes(part)) {
+                craftable = true
+            } else {
+                craftable = false
+            }
+
+            
+        })
+        if(craftable) {
+            this.recipe.ingriedients.forEach(part => {
+                this.items.find(item => item == part).destroy;
+            });
+            this.result.push(this.recipe.result);
+        }
+    }
+
+    update(){
+        this.crafting();
+        console.log("CRAFTING");
+    }
 }
 
 class Furnace {
@@ -30,6 +55,10 @@ class Furnace {
 
     addItem(item) {
         this.items.push(item);
+    }
+
+    update(){
+
     }
 }
 
@@ -46,6 +75,13 @@ class Chest {
         this.items.push(item);
     }   
     
+    deleteItem(item){
+        items.forEach(part => {
+            if(part == item){
+                part.destroy();
+            }
+        });
+    }
 }
 
 class DoubleChest {
@@ -82,6 +118,10 @@ class Miner {
     constructor( x, y){
         this.x = x;
         this.y = y;
+    }
+
+    update(){
+
     }
 }
 
